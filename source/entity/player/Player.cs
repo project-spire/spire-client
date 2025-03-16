@@ -1,3 +1,5 @@
+namespace spire.entity.player;
+
 using Godot;
 using System;
 
