@@ -4,4 +4,8 @@
     <EnableDynamicLoading>true</EnableDynamicLoading>
     <RootNamespace>spire</RootNamespace>
   </PropertyGroup>
+  
+  <ItemGroup>
+    <ProjectReference Include="..\protocol\cs\protocol.csproj" />
+  </ItemGroup>
 </Project>
