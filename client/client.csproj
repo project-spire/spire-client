@@ -10,7 +10,6 @@
 
     <ItemGroup>
         <ProjectReference Include="..\protocol\cs\protocol.csproj" />
-        <ProjectReference Include="..\core\core.csproj" />
     </ItemGroup>
 
 </Project>

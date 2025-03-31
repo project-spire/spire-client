@@ -4,11 +4,11 @@ namespace spire.network;
 
 public partial class Session
 {
-    private void Handle(GameProtocol protocol)
+    private async ValueTask Handle(GameServerProtocol protocol)
     {
         switch (protocol.ProtocolCase)
         {
-            case GameProtocol.ProtocolOneofCase.MovementSyncList:
+            case GameServerProtocol.ProtocolOneofCase.MovementSync:
                 break;
             default:
                 break;

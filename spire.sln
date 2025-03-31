@@ -9,10 +9,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "protocol", "protocol\cs\pro
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "client", "client\client.csproj", "{C708A605-EE06-4B66-837A-E3E8CC93FB8B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "core", "core\core.csproj", "{A652AB98-DBF8-4F60-8C4F-C7155236F883}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "bot", "bot\bot.csproj", "{89636DB3-589B-43C4-854E-FDF349E10711}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,14 +26,6 @@ Global
 		{C708A605-EE06-4B66-837A-E3E8CC93FB8B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C708A605-EE06-4B66-837A-E3E8CC93FB8B}.Release|Any CPU.ActiveCfg = Debug|Any CPU
 		{C708A605-EE06-4B66-837A-E3E8CC93FB8B}.Release|Any CPU.Build.0 = Debug|Any CPU
-		{A652AB98-DBF8-4F60-8C4F-C7155236F883}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A652AB98-DBF8-4F60-8C4F-C7155236F883}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A652AB98-DBF8-4F60-8C4F-C7155236F883}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A652AB98-DBF8-4F60-8C4F-C7155236F883}.Release|Any CPU.Build.0 = Release|Any CPU
-		{89636DB3-589B-43C4-854E-FDF349E10711}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{89636DB3-589B-43C4-854E-FDF349E10711}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{89636DB3-589B-43C4-854E-FDF349E10711}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{89636DB3-589B-43C4-854E-FDF349E10711}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{4C22454C-4566-4B5E-AE7D-D4FF74A2F7ED} = {B0411723-BA19-497D-91EE-DC8F813BC814}

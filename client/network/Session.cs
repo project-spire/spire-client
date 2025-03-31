@@ -3,6 +3,7 @@ using System.ComponentModel;
 using System.Net.Sockets;
 using System.Threading.Channels;
 using spire.protocol;
+using spire.protocol.auth;
 using spire.protocol.game;
 using spire.protocol.net;
 
@@ -57,7 +58,7 @@ public partial class Session : IDisposable, IAsyncDisposable
                 var bodyBuffer = _receiveBufferPool.Rent(bodyLength);
                 await _stream.ReadExactlyAsync(bodyBuffer, token);
 
-                Dispatch(category, bodyBuffer);
+                await Dispatch(category, bodyBuffer);
             }
             catch (OperationCanceledException)
             {
@@ -73,11 +74,15 @@ public partial class Session : IDisposable, IAsyncDisposable
 
     private async Task Send(CancellationToken token)
     {
-        await foreach (var buffer in Sender.Reader.ReadAllAsync(token))
+        while (true)
         {
             try
             {
-                await _stream.WriteAsync(buffer, token);
+                await foreach (var buffer in Sender.Reader.ReadAllAsync(token))
+                {
+                    await _stream.WriteAsync(buffer, token);
+                    ArrayPool<byte>.Shared.Return(buffer);
+                }
             }
             catch (OperationCanceledException)
             {
@@ -88,12 +93,10 @@ public partial class Session : IDisposable, IAsyncDisposable
                 //TODO: Log
                 break;
             }
-            
-            ArrayPool<byte>.Shared.Return(buffer);
         }
     }
 
-    private void Dispatch(ProtocolCategory category, byte[] buffer)
+    private async ValueTask Dispatch(ProtocolCategory category, byte[] buffer)
     {
         try
         {
@@ -101,15 +104,19 @@ public partial class Session : IDisposable, IAsyncDisposable
             {
                 case ProtocolCategory.Game:
                 {
-                    Handle(GameProtocol.Parser.ParseFrom(buffer));
+                    await Handle(GameServerProtocol.Parser.ParseFrom(buffer));
                     break;
                 }
                 case ProtocolCategory.Net:
                 {
-                    Handle(NetProtocol.Parser.ParseFrom(buffer));
+                    await Handle(NetServerProtocol.Parser.ParseFrom(buffer));
                     break;
                 }
                 case ProtocolCategory.Auth:
+                {
+                    await Handle(AuthServerProtocol.Parser.ParseFrom(buffer));
+                    break;
+                }
                 case ProtocolCategory.None:
                 default: break;
             }
