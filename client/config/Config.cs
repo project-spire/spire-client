@@ -9,11 +9,11 @@ public static class Config
 {
     public static readonly string LobbyHost;
     public static readonly ushort LobbyPort;
-    public static string LobbyAddress => LobbyHost + LobbyPort;
+    public static string LobbyAddress => $"{LobbyHost}:{LobbyPort}";
     
     public static readonly string GameHost;
     public static readonly ushort GamePort;
-    public static string GameAddress => GameHost + GamePort;
+    public static string GameAddress => $"{GameHost}:{GamePort}";
     
     static Config()
     {
@@ -23,25 +23,25 @@ public static class Config
         var content = file.GetAsText();
 
         var deserializer = new DeserializerBuilder()
-            .WithNamingConvention(CamelCaseNamingConvention.Instance)
+            .WithNamingConvention(UnderscoredNamingConvention.Instance)
             .Build();
         var data = deserializer.Deserialize<Data>(content);
 
-        LobbyHost = data.lobbyHost;
-        LobbyPort = data.lobbyPort;
+        LobbyHost = data.LobbyHost;
+        LobbyPort = data.LobbyPort;
         
-        GameHost = data.gameHost;
-        GamePort = data.gamePort;
+        GameHost = data.GameHost;
+        GamePort = data.GamePort;
         
         GD.Print("Loading config done!");
     }
 
     private struct Data
     {
-        public string lobbyHost;
-        public ushort lobbyPort;
+        public string LobbyHost { get; init; }
+        public ushort LobbyPort { get; init; }
         
-        public string gameHost;
-        public ushort gamePort;
+        public string GameHost { get; init; }
+        public ushort GamePort { get; init; }
     }
 }

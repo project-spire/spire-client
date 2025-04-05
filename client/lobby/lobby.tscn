@@ -11,25 +11,40 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_jtv5c")
 
-[node name="AccountContainer" type="VBoxContainer" parent="."]
+[node name="AccountPage" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="AccountEnter" type="VBoxContainer" parent="AccountPage"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -100.0
-offset_top = -33.0
-offset_right = 100.0
-offset_bottom = 33.0
+offset_left = 456.0
+offset_top = 271.0
+offset_right = 656.0
+offset_bottom = 337.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="AccountInput" type="LineEdit" parent="AccountContainer"]
+[node name="Input" type="LineEdit" parent="AccountPage/AccountEnter"]
 layout_mode = 2
 placeholder_text = "Dev ID"
 alignment = 1
 
-[node name="EnterButton" type="Button" parent="AccountContainer"]
+[node name="Button" type="Button" parent="AccountPage/AccountEnter"]
 layout_mode = 2
 text = "Enter"
+
+[node name="CharacterPage" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="CharacterSlots" type="VBoxContainer" parent="CharacterPage"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
